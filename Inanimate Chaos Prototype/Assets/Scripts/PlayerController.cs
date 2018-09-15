@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    public float Speed = 10;
+    public float Thrust = 10;
+    public float Lift = 1.5f;
+    public float Charge = 10;
 
-    public float speed;
+    public Transform ThrustPosition;
 
     private Rigidbody rb;
 
@@ -18,8 +21,14 @@ public class PlayerController : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        if (Charge > 0 && Input.GetKey(KeyCode.Space))
+        {
+            Charge -= Time.fixedDeltaTime;
+            rb.AddForce(Vector3.up * Lift);
+            rb.AddForceAtPosition(Thrust * transform.right, ThrustPosition.position + Vector3.down * .1f);
+        }
 
-        rb.AddForce(movement * speed);
+        Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
+        rb.AddForce(movement * Speed);
     }
 }
