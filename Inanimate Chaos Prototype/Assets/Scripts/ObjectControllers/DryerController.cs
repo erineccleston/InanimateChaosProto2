@@ -1,25 +1,24 @@
 ﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class DryerController : PlayerController
 {
-    public float Speed = 10;
     public float Thrust = 10;
     public float Lift = 1.5f;
     public float Charge = 10;
 
     public Transform ThrustPosition;
 
-    private Rigidbody rb;
-
-    void Start()
+    new void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        base.Start();
+
+        if (ThrustPosition == null)
+            ThrustPosition = transform;
     }
 
-    void FixedUpdate()
+    new void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        base.FixedUpdate();
 
         if (Charge > 0 && Input.GetKey(KeyCode.Space))
         {
@@ -27,8 +26,5 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector3.up * Lift);
             rb.AddForceAtPosition(Thrust * transform.right, ThrustPosition.position + Vector3.down * .1f);
         }
-
-        Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
-        rb.AddForce(movement * Speed);
     }
 }

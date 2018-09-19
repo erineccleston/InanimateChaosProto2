@@ -5,7 +5,9 @@ using UnityEngine;
 public class MouseOrbitImproved : MonoBehaviour
 {
     public Transform target;
+
     public float distance = 5.0f;
+
     public float xSpeed = 120.0f;
     public float ySpeed = 120.0f;
 
@@ -17,10 +19,7 @@ public class MouseOrbitImproved : MonoBehaviour
 
     private new Rigidbody rigidbody;
 
-    private float StartTime;
-    private Vector3 OldPos;
-
-    private bool InSelectMode;
+    private bool InSelectMode = false;
 
     float x = 0.0f;
     float y = 0.0f;
@@ -43,11 +42,24 @@ public class MouseOrbitImproved : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (InSelectMode)
         {
-            if (InSelectMode)
+            RaycastHit hit;
+            bool validHit = Physics.Raycast(transform.position, transform.forward, out hit);
+            validHit = validHit && (hit.transform.GetComponent<Rigidbody>() != null);
+            Debug.Log(hit.transform.name);
+
+            if (Input.GetKeyDown(KeyCode.Mouse1))
                 SelectMode(false);
-            else
+            else if (Input.GetKeyDown(KeyCode.Mouse0) && validHit)
+            {
+                SelectMode(false);
+                target = hit.transform;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse1))
                 SelectMode(true);
         }
     }
@@ -56,13 +68,7 @@ public class MouseOrbitImproved : MonoBehaviour
     {
         if (target)
         {
-            if (OldPos != target.position)
-            {
-                OldPos = target.position;
-                StartTime = Time.time;
-            }
-
-            x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
+            x += Input.GetAxis("Mouse X") * xSpeed /* * distance */ * 0.02f;
             y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
 
             y = ClampAngle(y, yMinLimit, yMaxLimit);
@@ -81,13 +87,7 @@ public class MouseOrbitImproved : MonoBehaviour
             Vector3 position = rotation * negDistance + target.position;
 
             transform.rotation = rotation;
-
-            float t = Time.time - StartTime;
             transform.position = position;
-            //Vector3.Lerp(transform.position, position, t);
-            //new Vector3(Mathf.SmoothStep(transform.position.x, position.x, t),
-            //Mathf.SmoothStep(transform.position.y, position.y, t),
-            //Mathf.SmoothStep(transform.position.z, position.z, t));
         }
     }
 
@@ -102,14 +102,14 @@ public class MouseOrbitImproved : MonoBehaviour
             _oldDistance = distance;
             _oldTarget = target;
 
-            target = new GameObject().transform;
+            target = new GameObject("Temp pivot").transform;
             target.position = transform.position;
-            distance = 0; // turning times by radius
+            distance = 0;
         }
         else
         {
             distance = _oldDistance;
-            GameObject.Destroy(target);
+            GameObject.Destroy(target.gameObject);
             target = _oldTarget;
         }
     }
