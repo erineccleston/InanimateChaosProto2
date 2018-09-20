@@ -30,7 +30,7 @@ public class SuspicionMeter : MonoBehaviour {
 
         float percentage = CurrentMeter / HigherLimit;
         meter.rectTransform.localScale = new Vector3(percentage, 1, 1);
-        MeterPercentage.text = "Suspicion - " + System.Math.Round(percentage, 3) * 100 + "%";
+        MeterPercentage.text = "Suspicion: " + System.Math.Round(percentage, 3) * 100 + "%";
     }
 	
 	// Update is called once per frame
@@ -44,7 +44,7 @@ public class SuspicionMeter : MonoBehaviour {
 
             if (maginitude > 0)
             {
-                int randomInt = r.Next(5, 50);
+                int randomInt = r.Next(20, 50);
                 float meterFilled = CurrentMeter / HigherLimit;
                 int add = System.Convert.ToInt32(System.Math.Ceiling(randomInt * meterFilled));
                 CurrentMeter += add;

@@ -20,8 +20,10 @@ public class Death : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if (Meter.death && !DisableDeath)
+		if (Meter.death)// && !DisableDeath)
         {
+            Meter.MeterPercentage.text = "Suspicion: 100%";
+            Meter.MeterPercentage.GraphicUpdateComplete();
             Time.timeScale = 0;
 
             GameOver.enabled = true;
