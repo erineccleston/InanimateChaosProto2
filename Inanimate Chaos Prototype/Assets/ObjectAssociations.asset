@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7957977189f4fae49b7ecec666f0606c, type: 3}
+  m_Name: ObjectAssociations
+  m_EditorClassIdentifier: 
+  Associations:
+  - Model: {fileID: 100002, guid: 84579ed2fbe5cbb4a8a242526b233637, type: 3}
+    Controller: {fileID: 0}
+    Mesh: {fileID: 4300000, guid: 84579ed2fbe5cbb4a8a242526b233637, type: 3}
+    ScriptName: 
+    PhysicsData:
+      Mass: 1
+      Drag: 0
+      AngularDrag: 0.05
+      Speed: 10

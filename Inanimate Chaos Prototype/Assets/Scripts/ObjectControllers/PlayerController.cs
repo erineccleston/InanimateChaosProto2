@@ -2,6 +2,7 @@
 
 public class PlayerController : MonoBehaviour
 {
+    [HideInInspector] // Hidden because it gets overridden by the ObjectAssociation
     public float Speed = 10;
 
     protected Rigidbody rb;

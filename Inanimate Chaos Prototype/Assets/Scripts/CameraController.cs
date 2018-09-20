@@ -10,6 +10,11 @@ public class CameraController : MonoBehaviour
 
     public bool InSelectMode = false;
 
+    void Start()
+    {
+        FollowObject.GetComponent<PlayerController>().enabled = true;
+    }
+
     void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))

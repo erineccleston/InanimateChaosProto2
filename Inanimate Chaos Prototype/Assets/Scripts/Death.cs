@@ -9,6 +9,7 @@ public class Death : MonoBehaviour {
     public Camera TheCamera;
     public SuspicionMeter Meter;
     public Text GameOver;
+    public bool DisableDeath = false;
 
 	// Use this for initialization
 	void Start ()
@@ -19,13 +20,13 @@ public class Death : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if (Meter.death)
+		if (Meter.death && !DisableDeath)
         {
             Time.timeScale = 0;
 
             GameOver.enabled = true;
 
-            Application.Quit();
+            //Application.Quit();
 
 
             //I'm still working on this part
