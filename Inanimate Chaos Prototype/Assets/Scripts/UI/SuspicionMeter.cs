@@ -7,8 +7,9 @@ public class SuspicionMeter : MonoBehaviour {
 
     public Image meter;
     public Text MeterPercentage;
-    public Vector3 person;
+    //public Vector3 person;
     public Death DeathScript;
+    public SkinnedMeshRenderer person;
 
     public CameraController TheCamera;
 
@@ -34,6 +35,20 @@ public class SuspicionMeter : MonoBehaviour {
         meter.rectTransform.localScale = new Vector3(percentage, 1, 1);
         percentage = (float)System.Math.Round(percentage, 2);
         MeterPercentage.text = "Suspicion: " + percentage * 100 + "%";
+
+        if (percentage > .5f)
+        {
+            if (person.GetBlendShapeWeight(0) < 99)
+            {
+                person.SetBlendShapeWeight(0, person.GetBlendShapeWeight(0) + 5);
+            }
+
+        }
+        else
+        {
+            if (person.GetBlendShapeWeight(0) > 1)
+                person.SetBlendShapeWeight(0, person.GetBlendShapeWeight(0) - 5);
+        }
     }
 	
 	// Update is called once per frame
@@ -43,14 +58,14 @@ public class SuspicionMeter : MonoBehaviour {
         {
             System.Random r = new System.Random();
             float maginitude = Vector3.Magnitude(TheCamera.FollowObject.GetComponent<Rigidbody>().velocity);
-            float dist = 1 / Vector3.Distance(TheCamera.FollowObject.GetComponent<Rigidbody>().position, person);
+            //float dist = 1 / Vector3.Distance(TheCamera.FollowObject.GetComponent<Rigidbody>().position);
 
-
-            if (maginitude > 0)
+            print(maginitude);
+            if (maginitude > .1)
             {
-                int randomInt = r.Next(20, 50);
+                int randomInt = r.Next(20, 150);
                 float meterFilled = CurrentMeter / HigherLimit;
-                int add = System.Convert.ToInt32(System.Math.Ceiling(randomInt * meterFilled * dist));
+                int add = System.Convert.ToInt32(System.Math.Ceiling(randomInt * meterFilled));
                 CurrentMeter += add;
                 UpdateMeterDisplay();
                 return;
@@ -60,7 +75,7 @@ public class SuspicionMeter : MonoBehaviour {
             {
                 int randomInt = r.Next(5, 20);
                 float meterFilled = (HigherLimit - CurrentMeter) / HigherLimit;
-                int add = System.Convert.ToInt32(System.Math.Ceiling(randomInt * meterFilled * dist));
+                int add = System.Convert.ToInt32(System.Math.Ceiling(randomInt * meterFilled));
                 CurrentMeter -= add;
                 UpdateMeterDisplay();
                 return;

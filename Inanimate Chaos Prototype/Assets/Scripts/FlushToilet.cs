@@ -7,6 +7,7 @@ public class FlushToilet : MonoBehaviour {
 
     public ClogChecker clog;
     public Text Win;
+    public BoxCollider water;
 
     void Start()
     {
@@ -16,17 +17,26 @@ public class FlushToilet : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Flushed the toilet!");
+        Debug.Log(clog.isClogged);
         if (clog.isClogged) {
             Debug.Log("You win!");
+            water.GetComponent<MeshRenderer>().enabled = true;
+
+            Win.enabled = true;
         }
-
-        Time.timeScale = 0;
-        Win.enabled = true;
-
     }
 
     void OnTriggerExit(Collider other)
     {
         Debug.Log("Not Flushing anymore.");
+    }
+
+    void Update()
+    {
+        if (Win.enabled)
+        {
+            Vector3 pos = water.transform.position;
+            water.transform.position = new Vector3(pos.x, pos.y + .01f, pos.z);
+        }
     }
 }
