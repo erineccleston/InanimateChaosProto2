@@ -16141,7 +16141,7 @@ Prefab:
         type: 2}
       propertyPath: Reticle
       value: 
-      objectReference: {fileID: 2800000, guid: 6868b6e50033b05438045ed391552ac8, type: 3}
+      objectReference: {fileID: 2800000, guid: 6c0dbdd4688016249bed46ee36941b6d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0d1a26f0af565d48ab7dcbc1f84277e, type: 2}
   m_IsPrefabAsset: 0
