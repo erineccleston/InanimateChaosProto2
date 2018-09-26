@@ -8,6 +8,10 @@ public class FlushToilet : MonoBehaviour {
     public ClogChecker clog;
     public Text Win;
     public BoxCollider water;
+    public SkinnedMeshRenderer ToiletWater;
+    public AudioSource ToiletSound;
+    public AudioSource FloodSound;
+
 
     void Start()
     {
@@ -21,8 +25,9 @@ public class FlushToilet : MonoBehaviour {
         if (clog.isClogged) {
             Debug.Log("You win!");
             water.GetComponent<MeshRenderer>().enabled = true;
-
             Win.enabled = true;
+            ToiletSound.Play();
+            FloodSound.PlayDelayed(13);
         }
     }
 
@@ -37,6 +42,9 @@ public class FlushToilet : MonoBehaviour {
         {
             Vector3 pos = water.transform.position;
             water.transform.position = new Vector3(pos.x, pos.y + .01f, pos.z);
+            if (ToiletWater.GetBlendShapeWeight(0) > 1)
+                ToiletWater.SetBlendShapeWeight(0, ToiletWater.GetBlendShapeWeight(0) - .5f);
+
         }
     }
 }

@@ -7,15 +7,15 @@ public class SuspicionMeter : MonoBehaviour {
 
     public Image meter;
     public Text MeterPercentage;
-    //public Vector3 person;
     public Death DeathScript;
     public SkinnedMeshRenderer person;
-
+    public AudioSource ShowerCurtain;
     public CameraController TheCamera;
 
     private float LowerLimit = 0;
-    private float HigherLimit = 5000;
+    private float HigherLimit = 100000;
     private float CurrentMeter = 1;
+    private float Reduce = 0;
 
     private void UpdateMeterDisplay()
     {
@@ -41,13 +41,20 @@ public class SuspicionMeter : MonoBehaviour {
             if (person.GetBlendShapeWeight(0) < 99)
             {
                 person.SetBlendShapeWeight(0, person.GetBlendShapeWeight(0) + 5);
+                if (!ShowerCurtain.isPlaying)
+                    ShowerCurtain.Play();
             }
 
         }
         else
         {
             if (person.GetBlendShapeWeight(0) > 1)
+            {
                 person.SetBlendShapeWeight(0, person.GetBlendShapeWeight(0) - 5);
+                if (!ShowerCurtain.isPlaying)
+                    ShowerCurtain.Play();
+
+            }
         }
     }
 	
@@ -61,11 +68,14 @@ public class SuspicionMeter : MonoBehaviour {
             //float dist = 1 / Vector3.Distance(TheCamera.FollowObject.GetComponent<Rigidbody>().position);
 
             print(maginitude);
-            if (maginitude > .1)
+            if (maginitude > .5)
             {
+                Reduce = 0;
                 int randomInt = r.Next(20, 150);
                 float meterFilled = CurrentMeter / HigherLimit;
-                int add = System.Convert.ToInt32(System.Math.Ceiling(randomInt * meterFilled));
+                int add = randomInt;//System.Convert.ToInt32(System.Math.Ceiling(randomInt * meterFilled));
+                if (meterFilled > .5f)
+                    add *= 3;
                 CurrentMeter += add;
                 UpdateMeterDisplay();
                 return;
@@ -73,10 +83,11 @@ public class SuspicionMeter : MonoBehaviour {
 
             else
             {
-                int randomInt = r.Next(5, 20);
-                float meterFilled = (HigherLimit - CurrentMeter) / HigherLimit;
-                int add = System.Convert.ToInt32(System.Math.Ceiling(randomInt * meterFilled));
-                CurrentMeter -= add;
+                Reduce += 1;
+                int randomInt = r.Next(15, 30);
+                //float meterFilled = (HigherLimit - CurrentMeter) / HigherLimit;
+                int add = randomInt;// System.Convert.ToInt32(System.Math.Ceiling(randomInt * meterFilled));
+                CurrentMeter -= add + Reduce;
                 UpdateMeterDisplay();
                 return;
             }
