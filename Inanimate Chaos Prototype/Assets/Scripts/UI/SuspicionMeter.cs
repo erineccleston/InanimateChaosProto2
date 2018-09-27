@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SuspicionMeter : MonoBehaviour {
 
     public Image meter;
+    public Image meterBackground;
     public Text MeterPercentage;
     public Death DeathScript;
     public SkinnedMeshRenderer person;
@@ -24,6 +25,9 @@ public class SuspicionMeter : MonoBehaviour {
             MeterPercentage.text = "Suspicion: 100%";
             MeterPercentage.GraphicUpdateComplete();
             DeathScript.IsDead = true;
+            meter.enabled = false;
+            MeterPercentage.enabled = false;
+            meterBackground.enabled = false;
             return;
         }
 

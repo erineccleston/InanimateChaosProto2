@@ -689,7 +689,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 20151758}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6, y: -9.8, z: -5.85}
+  m_LocalPosition: {x: -1.6, y: -5.14, z: -5.85}
   m_LocalScale: {x: 4.5630016, y: 2.4299054, z: 10.699495}
   m_Children: []
   m_Father: {fileID: 0}
@@ -16516,6 +16516,36 @@ Prefab:
       propertyPath: ShowerCurtain
       value: 
       objectReference: {fileID: 799560494}
+    - target: {fileID: 114416363310423470, guid: 36ed49f8f68d86945affa5f24332adb1,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114493302453916022, guid: 36ed49f8f68d86945affa5f24332adb1,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224732044124871874, guid: 36ed49f8f68d86945affa5f24332adb1,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -89
+      objectReference: {fileID: 0}
+    - target: {fileID: 114602298338672234, guid: 36ed49f8f68d86945affa5f24332adb1,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224651023737195206, guid: 36ed49f8f68d86945affa5f24332adb1,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -294
+      objectReference: {fileID: 0}
+    - target: {fileID: 114252311706265398, guid: 36ed49f8f68d86945affa5f24332adb1,
+        type: 2}
+      propertyPath: meterBackground
+      value: 
+      objectReference: {fileID: 1800151831}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36ed49f8f68d86945affa5f24332adb1, type: 2}
   m_IsPrefabAsset: 0
@@ -22008,9 +22038,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a61d50ac59b6f40bd53c06b4cecbea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clog: {fileID: 0}
-  flood: {fileID: 0}
-  hairdryer: {fileID: 0}
 --- !u!1 &1133309618
 GameObject:
   m_ObjectHideFlags: 0
@@ -38558,6 +38585,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1799990578}
   m_Mesh: {fileID: 4300000, guid: 62cf07e01d891b74e962cfc603ba12f7, type: 3}
+--- !u!114 &1800151831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114218254589894042, guid: 36ed49f8f68d86945affa5f24332adb1,
+    type: 2}
+  m_PrefabInternal: {fileID: 828023160}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!4 &1801902991 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 84579ed2fbe5cbb4a8a242526b233637,

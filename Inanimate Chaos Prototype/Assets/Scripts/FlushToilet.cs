@@ -27,7 +27,7 @@ public class FlushToilet : MonoBehaviour {
             water.GetComponent<MeshRenderer>().enabled = true;
             Win.enabled = true;
             ToiletSound.Play();
-            FloodSound.PlayDelayed(13);
+            FloodSound.PlayDelayed(6);
         }
     }
 
