@@ -29,10 +29,13 @@ public class ControllerAssociator : MonoBehaviour
                         rb.angularDrag = pair.PhysicsData.AngularDrag;
                     }
 
-                    System.Type type = pair.Script ?? typeof(PlayerController);
+                    //System.Type type = pair.Script ?? typeof(PlayerController);
+                    string type = pair.ScriptName;
+                    if (string.IsNullOrEmpty(type))
+                        type = "PlayerController";
                     if (!mf.gameObject.GetComponent(type))
                     {
-                        var pc = mf.gameObject.AddComponent(type) as PlayerController;
+                        var pc = mf.gameObject.AddComponent(System.Type.GetType(type)) as PlayerController;
                         pc.enabled = false;
                         pc.Speed = pair.PhysicsData.Speed;
                     }

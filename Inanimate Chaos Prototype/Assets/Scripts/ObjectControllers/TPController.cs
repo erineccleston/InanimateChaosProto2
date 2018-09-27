@@ -2,7 +2,7 @@
 
 public class TPController : PlayerController
 {
-    public float JumpPower = 10;
+    public float JumpPower = 120;
 
     private bool Jumping;
 

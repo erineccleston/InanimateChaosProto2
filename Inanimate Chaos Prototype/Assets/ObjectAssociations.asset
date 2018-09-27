@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Name: ObjectAssociations
   m_EditorClassIdentifier: 
   Associations:
-  - Model: {fileID: 100002, guid: 84579ed2fbe5cbb4a8a242526b233637, type: 3}
-    Controller: {fileID: 0}
-    Mesh: {fileID: 4300000, guid: 84579ed2fbe5cbb4a8a242526b233637, type: 3}
-    ScriptName: 
+  - Model: {fileID: 100002, guid: b9a23b872602855449fe093c6fb4b89d, type: 3}
+    Controller: {fileID: 11500000, guid: 751e22e34f8225a47b8073624310c68c, type: 3}
+    Mesh: {fileID: 4300000, guid: b9a23b872602855449fe093c6fb4b89d, type: 3}
+    ScriptName: TPController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     PhysicsData:
-      Mass: 1
+      Mass: 0.6
       Drag: 0
       AngularDrag: 0.05
       Speed: 10

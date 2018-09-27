@@ -9,7 +9,9 @@ public class ObjectAssociations : ScriptableObject
     public struct Pair
     {
         public GameObject Model;
+#if UNITY_EDITOR
         public UnityEditor.MonoScript Controller;
+#endif
 
         [HideInInspector]
         public Mesh Mesh;
@@ -61,6 +63,7 @@ public class ObjectAssociations : ScriptableObject
             else
                 Associations[i].Mesh = null;
 
+#if UNITY_EDITOR
             var controller = Associations[i].Controller;
             if (controller)
             {
@@ -81,6 +84,7 @@ public class ObjectAssociations : ScriptableObject
                 Associations[i].Script = null;
                 Associations[i].ScriptName = null;
             }
+#endif
 
             var data = Associations[i].PhysicsData;
             if (data.Mass + data.Drag + data.AngularDrag + data.Speed == 0)
